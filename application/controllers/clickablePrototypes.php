@@ -70,7 +70,9 @@ class ClickablePrototypes extends CI_Controller {
     }
 
 
-
+    public function user_login(){
+        var_dump($this->input->post());
+    }
 
     /*  DOCU: this function will delete specific data 
         Owner: BJ 

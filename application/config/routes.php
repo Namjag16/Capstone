@@ -18,5 +18,6 @@ $route['show_details'] = 'ClickablePrototypes/show_details';
 
 $route['logoff'] = 'ClickablePrototypes/logoff';
 
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

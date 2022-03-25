@@ -18,7 +18,7 @@
         <div class = "content">
             <div class = "login">
                 <h1>Log in </h1>
-                <form action="">
+                <form action = "<?= base_url('/user_login')?>" method = "POST">
                     <input type = "text" name = "username" placeholder = "Username">
                     <input type = "password" name = "password" placeholder = "Password">
                     <input type = "submit" value = "Submit" class = "admin_login_btn">
