@@ -12,7 +12,6 @@ div.main_container div.header {
 div.login {
     width: 200px;
     height: 300px;
-    /* border: 1px solid black; */
     margin: 100px 0px 0px 500px;
 }
 div.login form input{

@@ -5,7 +5,71 @@
 	<title>Register</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-	<link rel="stylesheet" href="assets/css/register.css">
+	<link rel="stylesheet" href="">
+
+    <style>
+        *{
+        margin: 0px;
+        }
+        div.main_container div.header {
+            background-color: black;
+            width: 100%;
+            height: 30px;
+            padding: 20px;
+            color: white;
+        }
+        div.register {
+            width: 400px;
+            min-height: 300px;
+            /* border: 1px solid black; */
+            margin: 80px 0px 0px 390px;
+            padding: 20px;
+        }
+        div.register h1{
+            /* font-size: 50px; */
+            /* text-align: center; */
+            margin: 0px 0px 0px 100px;
+        }
+        div.register p {
+            font-size: 13px;
+            margin: 0px 0px 0px 110px;
+        }
+            div.register p a{
+                text-decoration: none;
+                font-style: italic;
+                font-size: 15px;
+            }
+            div.register p a:hover {
+                text-decoration: underline;
+            }
+        div.register form {
+            padding: 5px;
+        }
+            div.register form input{
+                width: 200px;
+                height: 30px;
+                padding: 5px;
+                margin: 5px 5px 5px 100px;
+                border: 1px solid black;
+                font-size: 15px;
+                border-radius: 5px;
+                
+            }
+        div.register .register_btn{
+            margin: 10px 0px 0px 115px;
+            width: 100px;
+            background-color: black;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 0px 0px 0px 215px;
+        }
+        div.register .register_btn:hover{
+            background-color: white;
+            color: black;
+        }
+    </style>
+
 </head>
   
 <body>
@@ -27,7 +91,7 @@
                     <input type = "password" name = "c_password" placeholder = "Confirm Password"> 
                     <input type = "submit" value = "Register" class = " register_btn">
                 </form>
-                <p> I already have a account!<a href = " <?= base_url('/login')?>"> Login</a> </p>
+                <p> I already have a account!<a href = "/login"> Login</a> </p>
             </div>
         </div>
     </div>
