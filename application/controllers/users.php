@@ -4,34 +4,17 @@ class Users extends CI_Controller {
     /*  DOCU: this function will initialize every open
         Owner: BJ 
     */
-    // public function __construct()
-    // {
-    //     parent::__construct();
-    //     $this->load->model("Sample");
-    // }
-    // public function index_html()
-    // {
-    //     $result["quotes"] = $this->Sample->fetch_all();
-    //     $this->load->view("partials.php", $result);
-    // }
-
-    /*  DOCU: this is will triggered when ADD note click and will add the notes in database
-        Owner: BJ 
-    */
-    // public function create()
-    // {
-    //     $new_quote = $this->input->post();
-    //     $this->Sample->create($new_quote);
-    //     $result["quotes"] = $this->Sample->fetch_all();
-    //     $this->load->view("partials.php", $result);
-    // }
-
-    /*  DOCU: this function will always the first function that will read by the program because it is index.
-        Owner: BJ 
-    */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model("User");
+    }
 
     public function login(){
-        var_dump($this->input->post());
+        $this->User->login_validation($this->input->post());
+    }
+    public function register(){
+        $this->User->register_validation($this->input->post());
     }
 
     /*  DOCU: this function will delete specific data 

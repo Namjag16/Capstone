@@ -34,6 +34,14 @@
             font-size: 13px;
             margin: 0px 0px 0px 110px;
         }
+        div.register p .error{
+            font-size: 13px;
+            color: red;
+        }
+        div.register p .success{
+            font-size: 13px;
+            color: green;
+        }
             div.register p a{
                 text-decoration: none;
                 font-style: italic;
@@ -82,7 +90,7 @@
         <div class = "content">
             <div class = "register">
                 <h1>Register</h1>
-                <form action = "">
+                <form action = "/Users/register" method = "POST">
                     <input type = "text" name = "first_name" placeholder = "First name">
                     <input type = "text" name = "last_name" placeholder = "Last Name">
                     <input type = "text" name = "contact_num" placeholder = "Contact Number">
@@ -92,6 +100,8 @@
                     <input type = "submit" value = "Register" class = " register_btn">
                 </form>
                 <p> I already have a account!<a href = "/login"> Login</a> </p>
+                <p class = "error"><?= $this->session->flashdata('error');?></p>
+                <p class = "success"><?= $this->session->flashdata('success');?></p>
             </div>
         </div>
     </div>

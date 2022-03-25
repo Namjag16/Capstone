@@ -74,11 +74,13 @@
             <div class = "login">
                 <h1>Log in </h1>
                 <form action = "/Users/login" method = "POST">
-                    <input type = "text" name = "username" placeholder = "Username">
+                    <input type = "text" name = "email" placeholder = "Email Address">
                     <input type = "password" name = "password" placeholder = "Password">
                     <input type = "submit" value = "Submit" class = "admin_login_btn">
                 </form>
                 <p>Dont have an account yet?  <a href = "/register">Register </a></p> 
+                <p class = "error"> <?=   $this->session->flashdata('error');?></p>
+                <p class = "success"> <?=   $this->session->flashdata('success');?></p>
             </div>
         </div>
     </div>
