@@ -68,7 +68,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         */
         public function get_info($post){
             $pass = md5($post['password']);
-            return $this->db->query("SELECT * FROM Users WHERE email = '{$post['email']}' AND password = '$pass' ")->result_array()[0];
+            return $this->db->query("SELECT * FROM Users WHERE email = '{$post['email']}' AND password = '$pass' ")->row_array();
             // var_dump($post);
         }
 
@@ -80,7 +80,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 return "user";
             }
             else{
-                $this->session->set_flashdata('error', 'Invalid Account');
+                $this->session->set_flashdata('error', 'Invalid! The account is ADMIN');
                 redirect('login');
             }
         }

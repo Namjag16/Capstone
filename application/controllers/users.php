@@ -19,16 +19,23 @@ class Users extends CI_Controller {
         if($result == 'valid'){
             // echo "there";
             $result = $this->User->get_info($this->input->post());
-            $role = $this->User->login_user($result);
-            // echo $role;
-            // echo "hi";
-            if($role == 'user'){
-                $this->session->set_userdata(array('user_id'=>$result['id'], 'first_name'=>$result['first_name']));        
-                redirect('product');
-            }
-            else{
+
+            if ($result == NULL){
+                $this->session->set_flashdata('error', 'Invalid Email or Password');
                 redirect('login');
             }
+            else{
+                $role = $this->User->login_user($result);
+
+                if($role == 'user'){
+                    $this->session->set_userdata(array('user_id'=>$result['id'], 'first_name'=>$result['first_name']));        
+                    redirect('product');
+                }
+                else{
+                    redirect('login');
+                }
+            }
+
         }
     }
 

@@ -45,6 +45,13 @@
             background-color: white;
             color: black;
         }
+        div.login p{
+            text-align: center;
+            margin: 10px 0px 0px 0px;
+        }
+        .error{
+            color: red;
+        }
     </style>
 </head>
   
@@ -65,9 +72,9 @@
                     <input type = "password" name = "password" placeholder = "Password">
                     <input type = "submit" value = "Submit" class = "admin_login_btn">
                 </form>
-                <p class = "error"> <?=   $this->session->flashdata('error');?></p>
-                <p class = "error"> <?=   $this->session->flashdata('errors');?></p>
-                <p class = "success"> <?=   $this->session->flashdata('success');?></p>
+                <p class = "error"> <?= $this->session->flashdata('error');?></p>
+                <p class = "error"> <?= $this->session->flashdata('errors');?></p>
+                <p class = "success"> <?= $this->session->flashdata('success');?></p>
             </div>
         </div>
 

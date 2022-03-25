@@ -17,24 +17,31 @@ class Admins extends CI_Controller {
         $result = $this->Admin->login_validation($this->input->post());
         
         if($result == 'valid'){
-            // echo "there";
             $result = $this->Admin->get_info($this->input->post());
-            $role = $this->Admin->login_admin($result);
-
-            if($role == 'admin'){
-                $this->session->set_userdata(array('user_id'=>$result['id'], 'first_name'=>$result['first_name']));        
-                redirect('/admin/dashboard');
-            }
-            else{
-                echo "here";
-                $this->session->set_flashdata('errors','Invalid Email or Password');
+            
+            if ($result == NULL){
+                $this->session->set_flashdata('error', 'Invalid Email or Password');
                 redirect('admin');
             }
+            else{
+                $role = $this->Admin->login_admin($result);
+
+                if($role == 'admin'){
+                    $this->session->set_userdata(array('user_id'=>$result['id'], 'first_name'=>$result['first_name']));        
+                    redirect('/admin/dashboard');
+                }
+                else{
+                    echo "here";
+                    $this->session->set_flashdata('errors','Invalid Email or Password');
+                    redirect('admin');
+                }
+            }
+
         }
-        else{
-            $this->session->set_flashdata('errors','Invalid Email or Password');
-            redirect('admin');
-        }
+        // else{
+        //     $this->session->set_flashdata('errors','Invalid Email or Password');
+        //     redirect('admin');
+        // }
     }
 
    /*  DOCU: this function will desstroy the session and redirect the admin/user to the log in page.

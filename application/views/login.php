@@ -59,6 +59,9 @@
             div.login p a:hover{
                 text-decoration: underline;
             }
+        .error{
+            color: red;
+        }
     </style>
 
 </head>
