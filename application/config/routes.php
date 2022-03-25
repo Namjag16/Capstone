@@ -8,13 +8,14 @@ $route['login'] = 'ClickablePrototypes/login';
 $route['register'] = 'ClickablePrototypes/register';
 $route['show'] = 'ClickablePrototypes/show';
 $route['cart'] = 'ClickablePrototypes/cart';
-
-
+// admin
 $route['admin'] = 'ClickablePrototypes/admin';
 $route['dashboard'] = 'ClickablePrototypes/dashboard';
+$route['admin/dashboard'] = 'ClickablePrototypes/dashboard';
 $route['show_product'] = 'ClickablePrototypes/show_product';
 $route['edit'] = 'ClickablePrototypes/edit';
 $route['show_details'] = 'ClickablePrototypes/show_details';
+$route['add'] = 'ClickablePrototypes/add';
 
 $route['logoff'] = 'ClickablePrototypes/logoff';
 

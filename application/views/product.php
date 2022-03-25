@@ -140,9 +140,10 @@
 
     <div class = "main_container">
         <div class = "header">
-            <h1>NAME OF STORE</h1>
-            <p> Name </p>
+            <h1>Store</h1>
+            <p> <?= $this->session->userdata('first_name')?></p>
             <a href = "/cart"> Shopping Cart (5) </a>
+            <a href = "/Users/logoff"> Log off </a>
         </div>
 
         <div class = "content">

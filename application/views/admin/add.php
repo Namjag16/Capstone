@@ -2,7 +2,7 @@
 <html lang="en">
   
 <head>
-	<title>Edit</title>
+	<title>Add</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 	<link rel="stylesheet" href="assets/css/edit.css">
@@ -139,7 +139,8 @@
             <h1>Dashboard</h1>
             <h2><a href = "" >Orders </a></h2>
             <h2><a href = "/show_product""> Products </a></h2>
-            <h3> <a href = "/logoff"> Log off </a></h3>
+            <h3> <a href = "/logoff"> Logoff </a></h3>
+            <h4>Add Product</h4>
         </div>
 
         <div class = "content">

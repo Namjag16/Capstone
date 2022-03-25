@@ -131,7 +131,7 @@
                     <input type="text" placeholder = "Search">
                 </form>
 
-                <a href = "" class = "add_product_btn"> Add new product </a>
+                <a href = "/add" class = "add_product_btn"> Add new product </a>
             </div>
 
             <div class = "content_box">

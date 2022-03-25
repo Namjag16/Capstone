@@ -57,6 +57,9 @@ class ClickablePrototypes extends CI_Controller {
     public function edit(){
         $this->load->view('admin/edit');
     }
+    public function add(){
+        $this->load->view('admin/add');
+    }
     public function show_details(){
         $this->load->view('admin/show');
     }

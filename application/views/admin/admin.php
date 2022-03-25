@@ -60,11 +60,14 @@
         <div class = "content">
             <div class = "login">
                 <h1>Log in </h1>
-                <form action="">
-                    <input type = "text" name = "username" placeholder = "Username">
+                <form action = "/Admins/login" method = "POST">
+                    <input type = "text" name = "email" placeholder = "Email address">
                     <input type = "password" name = "password" placeholder = "Password">
                     <input type = "submit" value = "Submit" class = "admin_login_btn">
                 </form>
+                <p class = "error"> <?=   $this->session->flashdata('error');?></p>
+                <p class = "error"> <?=   $this->session->flashdata('errors');?></p>
+                <p class = "success"> <?=   $this->session->flashdata('success');?></p>
             </div>
         </div>
 

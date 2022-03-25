@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Users extends CI_Controller {
+class Admins extends CI_Controller {
 
     /*  DOCU: this function will initialize every open
         Owner: BJ 
@@ -7,45 +7,47 @@ class Users extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model("User");
+        $this->load->model("Admin");
     }
 
-    /*  DOCU: this function will validate the input
+    /*  DOCU: this function will validate the admin input. and will it know if the user is admin or not.
         Owner: BJ 
     */
     public function login(){
-        $result = $this->User->login_validation($this->input->post());
+        $result = $this->Admin->login_validation($this->input->post());
         
         if($result == 'valid'){
             // echo "there";
-            $result = $this->User->get_info($this->input->post());
-            $role = $this->User->login_user($result);
-            // echo $role;
-            // echo "hi";
-            if($role == 'user'){
+            $result = $this->Admin->get_info($this->input->post());
+            $role = $this->Admin->login_admin($result);
+
+            if($role == 'admin'){
                 $this->session->set_userdata(array('user_id'=>$result['id'], 'first_name'=>$result['first_name']));        
-                redirect('product');
+                redirect('/admin/dashboard');
             }
             else{
-                redirect('login');
+                echo "here";
+                $this->session->set_flashdata('errors','Invalid Email or Password');
+                redirect('admin');
             }
+        }
+        else{
+            $this->session->set_flashdata('errors','Invalid Email or Password');
+            redirect('admin');
         }
     }
 
-    /*  DOCU: this function will logoff and destroy the session
+   /*  DOCU: this function will desstroy the session and redirect the admin/user to the log in page.
         Owner: BJ 
     */
     public function logoff(){
         $this->session->sess_destroy();
-        redirect('login');
+        redirect('admin');
     }
 
-    /*  DOCU: this function will validate the registration input
-        Owner: BJ 
-    */
-    public function register(){
-        $this->User->register_validation($this->input->post());
-    }
+    // public function register(){
+    //     $this->User->register_validation($this->input->post());
+    // }
 
     // /*  DOCU: this function will delete specific data 
     //     Owner: BJ 
