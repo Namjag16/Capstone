@@ -142,7 +142,7 @@
         <div class = "header">
             <h1>NAME OF STORE</h1>
             <p> Name </p>
-            <a href = " <?= base_url("/cart") ?> "> Shopping Cart (5) </a>
+            <a href = "/cart"> Shopping Cart (5) </a>
         </div>
 
         <div class = "content">

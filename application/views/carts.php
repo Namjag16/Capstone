@@ -114,7 +114,7 @@
 
     <div class = "main_container">
         <div class = "header">
-            <h1 id = "name_store"><a href = " <?= base_url("/product") ?>"> Store </a></h1>
+            <h1 id = "name_store"><a href = "/product"> Store </a></h1>
             <a href = ""> Shopping Cart (5) </a>
             <h4>Carts</h4>
 

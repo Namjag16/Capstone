@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class ClickablePrototypes extends CI_Controller {
+class Users extends CI_Controller {
 
     /*  DOCU: this function will initialize every open
         Owner: BJ 
@@ -29,50 +29,10 @@ class ClickablePrototypes extends CI_Controller {
     /*  DOCU: this function will always the first function that will read by the program because it is index.
         Owner: BJ 
     */
-    public function index()
-    {
-        $this->load->view('Prototype');
-    }
+
     public function login(){
-        $this->load->view('login');
+        var_dump($this->input->post());
     }
-    public function product(){
-        $this->load->view('product');
-    }
-    public function show(){
-        $this->load->view('show');
-    }
-    public function cart(){
-        $this->load->view('carts');
-    }
-    public function admin(){
-        $this->load->view('admin/admin');
-    }
-    public function dashboard(){
-        $this->load->view('admin/dashboard');
-    }
-    public function show_product(){
-        $this->load->view('admin/product');
-    }
-    public function edit(){
-        $this->load->view('admin/edit');
-    }
-    public function show_details(){
-        $this->load->view('admin/show');
-    }
-    public function register(){
-        $this->load->view('register');
-    }
-
-    public function logoff(){
-        $this->session->sess_destroy();
-        $this->load->view('admin/admin');
-    }
-
-    // public function user_login(){
-    //     var_dump($this->input->post());
-
-    // }
 
     /*  DOCU: this function will delete specific data 
         Owner: BJ 
