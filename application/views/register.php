@@ -34,14 +34,6 @@
             font-size: 13px;
             margin: 0px 0px 0px 110px;
         }
-        div.register p .error{
-            font-size: 13px;
-            color: red;
-        }
-        div.register p .success{
-            font-size: 13px;
-            color: green;
-        }
             div.register p a{
                 text-decoration: none;
                 font-style: italic;
@@ -75,6 +67,14 @@
         div.register .register_btn:hover{
             background-color: white;
             color: black;
+        }
+        .error{
+            font-size: 13px;
+            color: green;
+        }
+        .success{
+            font-size: 13px;
+            color: green;
         }
     </style>
 
