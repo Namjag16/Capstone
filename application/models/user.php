@@ -44,8 +44,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             }
         }
 
-        /*     DOCU: this function will validate the login input form and will match the data in database.    
-        Owner: BJ 
+        /*  DOCU: this function will validate the login input form and will match the data in database.    
+            Owner: BJ 
         */
         public function login_validation($var){
             // var_dump($var);
@@ -85,24 +85,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             }
         }
 
-
-
-        function get_all()
-        {
-            return $this->db->query("SELECT id ,concat(first_name,' ',Last_name) AS Name, contact_number FROM contact_user")->result_array();
+        public function all_items(){
+            return $this->db->query("SELECT * FROM items")->result_array();
         }
 
-        function delete($id){
-            return $this->db->query("DELETE FROM contact_user WHERE id = ?",$id);
+        public function get_data($id){
+            return $this->db->query("SELECT * FROM items WHERE id = ?",$id)->row_array();
         }
 
-        function get_data($id){
-            return $this->db->query("SELECT id ,concat(first_name,' ',Last_name) AS Name, contact_number FROM contact_user WHERE id = ?",$id)->row_array();
-        }
+        // function get_all()
+        // {
+        //     return $this->db->query("SELECT id ,concat(first_name,' ',Last_name) AS Name, contact_number FROM contact_user")->result_array();
+        // }
+
+        // function delete($id){
+        //     return $this->db->query("DELETE FROM contact_user WHERE id = ?",$id);
+        // }
+
+        // function get_data($id){
+        //     return $this->db->query("SELECT id ,concat(first_name,' ',Last_name) AS Name, contact_number FROM contact_user WHERE id = ?",$id)->row_array();
+        // }
         
-        function update($id,$user){
-            $query = "UPDATE contact_user SET first_name = ?, last_name = ?, contact_number = ?  WHERE id = $id";
-            return $this->db->query($query,$user);
-        }
+        // function update($id,$user){
+        //     $query = "UPDATE contact_user SET first_name = ?, last_name = ?, contact_number = ?  WHERE id = $id";
+        //     return $this->db->query($query,$user);
+        // }
     }
 ?>

@@ -44,13 +44,14 @@
 
         div.main_container div.content {
             padding: 20px;
-            width: 500px;
+            width: 400px;
             min-height: 200px;
             border: 1px solid black;
-            margin: 100px 0px 0px 300px;
+            margin: 100px 0px 0px 400px;
         }
             div.main_container div.content form{
-            display: inline-block;
+                margin: 0px;
+                padding: 20px;
             }
                 div.main_container div.content form input{
                     width: 200px;
@@ -74,10 +75,12 @@
                     font-size: 15px;
                     font-weight: bold;
                     border-radius:5px ;
+                    width: 200px;
                 }
                 div.main_container div.content .upload_img{
                     height: 30px;
                     background-color: white;
+                    width: 300px;
                 }
                 div.main_container div.content .cancel_btn{
                     width: 80px;
@@ -96,7 +99,7 @@
                     color: white;
                     border: none;
                 }
-                div.main_container div.content .preview_btn{
+                div.main_container div.content .add_btn{
                     width: 80px;
                     height: 30px;
                     font-size: 15px;
@@ -108,28 +111,12 @@
                     border-radius: 5px;
                     cursor: pointer;
                 }
-                div.main_container div.content .preview_btn:hover{
+                div.main_container div.content .add_btn:hover{
                     background-color: black;
                     color: white;
                     border: none;
                 }
-                div.main_container div.content .update_btn{
-                    width: 80px;
-                    height: 30px;
-                    font-size: 15px;
-                    font-weight:bold ;
-                    padding: 2px;
-                    background-color: white;
-                    border: none;
-                    border: 1px solid black;
-                    border-radius: 5px;
-                    cursor: pointer;
-                }
-                div.main_container div.content .update_btn:hover{
-                    background-color: #114006;
-                    color: white;
-                    border: none;
-                }
+
     </style>
 </head>
   
@@ -144,23 +131,22 @@
         </div>
 
         <div class = "content">
-            <h1>Edit Product - ID 2</h1>
+            <h1>Add Product</h1>
 
-            <form action = "">
+            <form enctype = 'multipart/form-data' action = "/admins/add_product" method = "POST">
                 <input type = "text" name = "product_name" placeholder = "Name">
-                <textarea name = "description" placeholder = "Description here" cols="50" rows="10"> </textarea>
+                <textarea name = "description" placeholder = "Description here" cols="40" rows="10"> </textarea>
                 <label for = "category">Category</label>
                 <select id="category" name="category">
+                    <option value = ""></option>
                     <option value = "shirt">Shirt</option>
                     <option value = "bag"> Bag</option>
                     <option value = "jeans">Jeans</option>
                 </select>
                 <input type = "text" name = "add_new_category" placeholder = "Add new category ">
-                <input type="file" name="image" value = "Download_image" class = "upload_img">
-                <input type="submit" name="action" value="Cancel" class = "cancel_btn"/>
-                <input type="submit" name="action" value="Preview" class = "preview_btn"/>
-                <input type="submit" name="action" value="Update" class = "update_btn"/>
+                <input type = "file" name = "image" value = "Download_image" class = "upload_img">
 
+                <input type="submit" name="action" value="Add" class = "add_btn"/>
             </form>
 
         </div>

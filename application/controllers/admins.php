@@ -36,12 +36,7 @@ class Admins extends CI_Controller {
                     redirect('admin');
                 }
             }
-
         }
-        // else{
-        //     $this->session->set_flashdata('errors','Invalid Email or Password');
-        //     redirect('admin');
-        // }
     }
 
    /*  DOCU: this function will desstroy the session and redirect the admin/user to the log in page.
@@ -50,6 +45,25 @@ class Admins extends CI_Controller {
     public function logoff(){
         $this->session->sess_destroy();
         redirect('admin');
+    }
+
+    public function add_product(){
+        var_dump($this->input->post());
+        $file = $_FILES['image'];
+
+        $fileName = $_FILES['image']['name'];
+        $fileTmpName = $_FILES['image']['tmp_name'];
+        $fileSize = $_FILES['image']['size'];
+        $fileError = $_FILES['image']['error'];
+        $fileType = $_FILES['image']['type'];
+
+        // echo $fileName;
+        // echo $fileTmpName;
+        // echo $fileSize;
+        // echo $fileError;
+        // echo $fileType;
+
+        var_dump($file);
     }
 
     // public function register(){

@@ -66,16 +66,10 @@ class ClickablePrototypes extends CI_Controller {
     public function register(){
         $this->load->view('register');
     }
-
     public function logoff(){
         $this->session->sess_destroy();
         $this->load->view('admin/admin');
     }
-
-    // public function user_login(){
-    //     var_dump($this->input->post());
-
-    // }
 
     /*  DOCU: this function will delete specific data 
         Owner: BJ 

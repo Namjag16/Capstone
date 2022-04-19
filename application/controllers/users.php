@@ -29,7 +29,7 @@ class Users extends CI_Controller {
 
                 if($role == 'user'){
                     $this->session->set_userdata(array('user_id'=>$result['id'], 'first_name'=>$result['first_name']));        
-                    redirect('product');
+                    $this->all_product();
                 }
                 else{
                     redirect('login');
@@ -54,6 +54,16 @@ class Users extends CI_Controller {
         $this->User->register_validation($this->input->post());
     }
 
+    public function all_product(){
+        $result['data'] = $this->User->all_items();
+        $this->load->view('product.php',$result);
+    }
+    public function show($id){
+        // echo $id;
+        // $this->session->product_id = $id;
+        $info = $this->User->get_data($id);
+        $this->load->view('show.php',$info);
+    }
     // /*  DOCU: this function will delete specific data 
     //     Owner: BJ 
     // */

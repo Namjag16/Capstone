@@ -126,12 +126,28 @@
                     padding: 20px;
                     overflow: auto;
                 }
-                    div.main_container div.content div.product_img_container{
+                    div.main_container div.content a.product_img_container{
                         border: 1px solid black;
-                        width: 150px;
-                        height: 150px;
+                        width: 180px;
+                        height: 180px;
                         display: inline-block;
                         margin: 10px;
+                        vertical-align: top;
+                        text-decoration: none;
+                        color:black;
+                    }
+                    div.main_container div.content a.product_img_container img{
+                        width: 180px;
+                        height: 180px;
+                    }
+                    div.main_container div.content a.product_img_container p{
+                        background-color: hsla(4, 0%, 0%,0.4); 
+                        text-decoration: none;
+                        position: relative;
+                        bottom: 27px;
+                        box-shadow: 3px 3px 7px grey;
+                        font-size: 20px;
+                        text-align: center;
                     }
         </style>
 </head>
@@ -144,6 +160,7 @@
             <p> <?= $this->session->userdata('first_name')?></p>
             <a href = "/cart"> Shopping Cart (5) </a>
             <a href = "/Users/logoff"> Log off </a>
+            <h4>Product</h4>
         </div>
 
         <div class = "content">
@@ -158,9 +175,7 @@
                     <h2>Categories</h2>
                     <ul>
                         <li>T-shirts()</li>
-                        <li>Shoes()</li>
-                        <li>Cup()</li>
-                        <Li>Fuits()</Li>
+                        <li>Cap()</li>
                         <li class = "italic_li">Show all</li>
                     </ul>
                 </section>
@@ -172,46 +187,12 @@
                 </div>
 
                 <div  class = "main_content_box" >
-                    <div class ="product_img_container">
-                    </div >
-                    <div class ="product_img_container">
-                    </div >
-                    <div class ="product_img_container">
-                    </div >
-                    <div class ="product_img_container">
-                    </div >
-                    <div class ="product_img_container">
-                    </div >
-                    <div class ="product_img_container">
-                    </div >
-                    <div class ="product_img_container">
-                    </div >
-                    <div class ="product_img_container">
-                    </div >
-                    <div class ="product_img_container">
-                    </div >
-                    <div class ="product_img_container">
-                    </div >
-                    <div class ="product_img_container">
-                    </div >
-                    <div class ="product_img_container">
-                    </div >
-                    <div class ="product_img_container">
-                    </div >
-                    <div class ="product_img_container">
-                    </div >
-                    <div class ="product_img_container">
-                    </div >
-                    <div class ="product_img_container">
-                    </div >
-                    <div class ="product_img_container">
-                    </div >
-                    <div class ="product_img_container">
-                    </div >
-                    <div class ="product_img_container">
-                    </div >
-                    <div class ="product_img_container">
-                    </div >
+                <?php foreach($data AS $row ){?>
+                    <a href = "/Users/show/<?= $row['id'] ?>" class = "product_img_container">
+                        <img src = "<?= base_url($row['image']) ?>" alt = "<?= $row['name']?>" >
+                        <p>Price $<?= $row['price']?></p>
+                    </a >
+                <?php }?>
                 </div>
             </div>
 
