@@ -1,3 +1,6 @@
+<?php
+    $total = 0;
+?>
 <!DOCTYPE html>
 <html lang="en">
   
@@ -10,14 +13,10 @@
     <style>
         *{
             margin: 0px;
-            overflow: hidden;
+            overflow-x: hidden;
         }
         #total_cost{
-            margin: 10px 0px 0px 945px;
-        }
-        .continue_ship{
-            height: 20px;
-            margin: 10px 0px 0px 915px;;
+            margin: 10px 0px 30px 945px;
         }
         div.main_container{
             margin: 0px;
@@ -72,8 +71,22 @@
             div.main_container div.content td{
                 border: 1px solid black;
                 padding: 5px;
+                text-align: center;
             }
-
+            div.main_container div.content .continue_shopping{
+                border: black 1px solid;
+                margin: 10px 0px 0px 900px;
+                height: 30px;
+                padding: 5px;
+                text-decoration: none;
+                color: black;
+                border-radius: 5px;
+                transition: 1s;
+            }
+            div.main_container div.content .continue_shopping:hover{
+                background-color: black;
+                color: white;
+            }
         div.main_container div.shipping_info{
             margin: 0px;
             padding: 50px;
@@ -114,7 +127,7 @@
 
     <div class = "main_container">
         <div class = "header">
-            <h1 id = "name_store"><a href = "/product"> Store </a></h1>
+            <h1 id = "name_store"><a href = "/users/all_product"> Store </a></h1>
             <a href = ""> Shopping Cart (5) </a>
             <h4>Carts</h4>
 
@@ -128,43 +141,29 @@
                     <Th>Quantity</Th>
                     <th>total</th>
                 </tr>
-
+<?php   foreach($data AS $row) {
+?>               
                 <tr>
-                    <td>something</td>
-                    <td>something</td>
-                    <td>something</td>
-                    <td>something</td>
+                    <td> <?= $row['items']?> </td>
+                    <td> <?= $row['price']?> </td>
+                    <td> <?= $row['quantity']?> </td>
+                    <td> <?= $row['total']?> </td>
                 </tr>
-                
-                <tr>
-                    <td>something</td>
-                    <td>something</td>
-                    <td>something</td>
-                    <td>something</td>
-                </tr>
-                
-                <tr>
-                    <td>something</td>
-                    <td>something</td>
-                    <td>something</td>
-                    <td>something</td>
-                </tr>
-
+<?php $total = $row['total'] + $total;
+        } 
+?>
             </table>
 
-            <p id = "total_cost"> Total : $21 </p>
-
-            <form action = "" class = "continue_ship" >
-                <input type = "submit" value = "continue shipping">
-            </form>
-
+            <p id = "total_cost"> Total : $<?= $total ?> </p>
+            
+            <a href = "/users/all_product" class = "continue_shopping"> Continue Shopping</a>
         </div> 
 
         <div class = "shipping_info">
    
             <div class = "ship_1">
                 <h2>Shipping information</h2>
-                <form action = "" class = "Ship_info"> 
+                <form action = "/Users/shipping_info" class = "Ship_info" method = "POST"> 
                     <div>
                         <input type = "text" name = "first_name" placeholder = "First Name " >
                         <input type = "text" name = "last_name" placeholder = "last name ">
@@ -188,8 +187,12 @@
                         <input type = "text" name = "bill_city" placeholder = "City">
                         <input type = "text" name = "bill_state" placeholder = "State">
                         <input type = "text" name = "bill_zip_code" placeholder = "Zip code">
+                        <input type = "text" name = "bill_card" placeholder = "Card number">
+                        <input type = "text" name = "bill__security_code" placeholder = "Security number">
+                        
                     </div>
-
+                    
+                    <input type = "submit" value = "ok">
                 </form>
             </div>
 

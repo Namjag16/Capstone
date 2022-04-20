@@ -35,7 +35,6 @@ class Users extends CI_Controller {
                     redirect('login');
                 }
             }
-
         }
     }
 
@@ -53,16 +52,40 @@ class Users extends CI_Controller {
     public function register(){
         $this->User->register_validation($this->input->post());
     }
-
+    /*  DOCU: this function will is to select all_product in specific table in database
+        Owner: BJ 
+    */
     public function all_product(){
         $result['data'] = $this->User->all_items();
         $this->load->view('product.php',$result);
     }
+    /*  DOCU: this function will is to select a specific data in database
+        Owner: BJ 
+    */
     public function show($id){
-        // echo $id;
-        // $this->session->product_id = $id;
         $info = $this->User->get_data($id);
         $this->load->view('show.php',$info);
+
+        $result['data'] = $this->User->similar($id);
+        $this->load->view('footer.php',$result);
+    }
+    /*  DOCU: this function will is save the info in the database.
+        Owner: BJ 
+    */
+    public function save_at_carts(){
+        $post = $this->input->post();
+        $result = $this->User->save_at_database($post);
+    }
+
+    public function show_all_carts(){
+        $user_id = $this->session->user_id;
+        $result['data'] = $this->User->get_all_carts($user_id);
+        $this->load->view('carts',$result);
+    }
+
+    public function shipping_info(){
+        var_dump($this->input->post());
+        
     }
     // /*  DOCU: this function will delete specific data 
     //     Owner: BJ 

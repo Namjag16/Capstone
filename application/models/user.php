@@ -93,6 +93,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             return $this->db->query("SELECT * FROM items WHERE id = ?",$id)->row_array();
         }
 
+        public function similar($id){
+            $end = $id + 5;
+            return $this->db->query("SELECT * FROM items WHERE id BETWEEN $id and $end limit 5;")->result_array();
+        }
+
+        public function save_at_database($post){
+            // var_dump($post);
+            
+            if(!is_numeric($post['quantity']) || $post['quantity'] <= 0){
+                $this->session->set_flashdata('error', 'Invalid input for quantity');
+                redirect("users/show/".$post['item_id']);
+            }else{
+                $query = "INSERT INTO cart(users_id,item_id,items,price,quantity,created_at,updated_at) VALUES(?,?,?,?,?,NOW(),NOW())";
+                $this->db->query($query,$post);
+                $this->session->set_flashdata('sucess', 'Item added at cart');
+                redirect("users/show/".$post['item_id']);
+            }
+        }
+
+        public function get_all_carts($id){
+            return $this->db->query("SELECT items,price,quantity, (price * quantity) as total FROM cart WHERE users_id = ?;",$id)->result_array();
+        }
         // function get_all()
         // {
         //     return $this->db->query("SELECT id ,concat(first_name,' ',Last_name) AS Name, contact_number FROM contact_user")->result_array();

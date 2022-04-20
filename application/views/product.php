@@ -158,19 +158,16 @@
         <div class = "header">
             <h1>Store</h1>
             <p> <?= $this->session->userdata('first_name')?></p>
-            <a href = "/cart"> Shopping Cart (5) </a>
+            <a href = "/Users/show_all_carts"> Shopping Cart (5) </a>
             <a href = "/Users/logoff"> Log off </a>
             <h4>Product</h4>
         </div>
-
         <div class = "content">
-
             <div class = "left_nav">
                 <form action = "" method = "POST">
                     <input type = "text" name = "product_name" placeholder = "Product Name">
                     <input type = "submit" value = "Ok" class = "search_btn">
                 </form>
-
                 <section>
                     <h2>Categories</h2>
                     <ul>
@@ -180,7 +177,6 @@
                     </ul>
                 </section>
             </div>
-
             <div class = "main_content">
                 <div class = "main_content_header">
                     <h1>Name of product</h1>
@@ -197,13 +193,9 @@
             </div>
 
         </div>
-
         <div class = "footer">
-
         </div>
-    
     </div>
-
 </body>
   
 </html>
