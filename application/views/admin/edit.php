@@ -137,37 +137,33 @@
     <div class = "main_container">
         <div class = "header">
             <h1>Dashboard</h1>
-            <h2><a href = "" >Orders </a></h2>
+            <h2><a href = "" > Orders </a></h2>
             <h2><a href = "/show_product""> Products </a></h2>
             <h3> <a href = "/logoff"> Log off </a></h3>
         </div>
 
         <div class = "content">
-            <h1>Edit Product - ID 2</h1>
+            <h1>Edit Product - <?= $id ?> </h1>
 
-            <form action = "">
-                <input type = "text" name = "product_name" placeholder = "Name">
-                <textarea name = "description" placeholder = "Description here" cols="50" rows="10"> </textarea>
+            <form action = "<?= base_url('admins/edit_product_action/').$id ?>" method = "POST" >
+
+                <input type = "text" name = "product_name" placeholder = <?= $name?> value = <?= $name ?> >
+                <textarea name = "description" placeholder = "Description here" cols="50" rows="10"> <?= $description?> </textarea>
                 <label for = "category">Category</label>
                 <select id="category" name="category">
                     <option value = "shirt">Shirt</option>
                     <option value = "bag"> Bag</option>
                     <option value = "jeans">Jeans</option>
                 </select>
-                <input type = "text" name = "add_new_category" placeholder = "Add new category ">
-                <input type="file" name="image" value = "Download_image" class = "upload_img">
-                <input type="submit" name="action" value="Cancel" class = "cancel_btn"/>
-                <input type="submit" name="action" value="Preview" class = "preview_btn"/>
-                <input type="submit" name="action" value="Update" class = "update_btn"/>
+                <input type = "text" name = "add_new_category" placeholder = "Add new category">
+                <input type = "file" name = "image" value = "Download_image" class = "upload_img">
+
+                <input type = "submit" name = "action" value = "Cancel" class = "cancel_btn"/>
+                <input type = "submit" name = "action" value = "Preview" class = "preview_btn"/>
+                <input type = "submit" name = "action" value = "Update" class = "update_btn"/>
 
             </form>
-
         </div>
-
-        <div class = "footer">
-
-        </div>
-    
     </div>
 
 </body>

@@ -28,11 +28,14 @@ class Admins extends CI_Controller {
 
                 if($role == 'admin'){
                     $this->session->set_userdata(array('user_id'=>$result['id'], 'first_name'=>$result['first_name']));        
-                    redirect('/admin/dashboard');
+                    // redirect('/admin/dashboard');
+                    // $result['data'] = $this->Admin->get_all_Shipping_info();
+                    // $this->load->view('admin/dashboard.php',$result);
+                    $this->dashboard();
                 }
                 else{
-                    echo "here";
-                    $this->session->set_flashdata('errors','Invalid Email or Password');
+                    // echo "here";
+                    $this->session->set_flashdata('error','Invalid Email or Password');
                     redirect('admin');
                 }
             }
@@ -47,6 +50,40 @@ class Admins extends CI_Controller {
         redirect('admin');
     }
 
+    public function dashboard(){
+        $result['data'] = $this->Admin->get_all_Shipping_info();
+        $this->load->view('admin/dashboard.php',$result);
+    }
+
+    public function show_details($id){  
+        $result['data'] = $this->Admin->get_show_details($id);
+        $this->load->view('admin/show.php',$result);
+
+        $cart['info'] = $this->Admin->get_show_cart($id);
+        $this->load->view('admin/show_cart.php',$cart);
+    }
+
+    public function show_product(){
+        $result['data'] = $this->Admin->get_show_product();
+        $this->load->view('admin/product.php',$result);
+    }
+
+    public function edit_product($id){
+        $result = $this->Admin->select_product($id);
+        $this->load->view('admin/edit.php',$result);
+    }
+
+    public function edit_product_action($id){
+        $result['data'] = $this->input->post();
+        $result['id'] = $id;
+        $this->Admin->edit_action($result);
+        
+    }
+
+    public function preview($id){
+        $result = $this->Admin->select_product($id);
+        $this->load->view('admin/preview.php',$result);
+    }
     public function add_product(){
         var_dump($this->input->post());
         $file = $_FILES['image'];

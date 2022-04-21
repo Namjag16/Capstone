@@ -115,6 +115,74 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         public function get_all_carts($id){
             return $this->db->query("SELECT items,price,quantity, (price * quantity) as total FROM cart WHERE users_id = ?;",$id)->result_array();
         }
+
+        public function insert_shipping($var){
+            $query = "INSERT INTO shipping_info (users_id, first_name ,last_name ,address ,address_2 ,City ,State ,zip ,billing_first_name ,billing_last_name ,billing_address ,billing_address_2 ,billing_city ,billing_state ,billing_zip ,card ,security_code ,created_at,updated_at) 
+                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            return $this->db->query($query,$var);
+        }
+
+        public function shipping_info_validate($info){
+            // var_dump($this->input->post());
+            $this->load->library('form_validation');
+
+            $this->form_validation->set_rules('first_name', 'First Name', 'trim|required');
+            $this->form_validation->set_rules('last_name', 'Last Name', 'trim|required');
+            $this->form_validation->set_rules('address', 'Address', 'trim|required');
+            $this->form_validation->set_rules('address2', 'Address 2', 'trim|required'); 
+            $this->form_validation->set_rules('city', 'City', 'trim|required');
+            $this->form_validation->set_rules('state', 'State', 'trim|required');
+            $this->form_validation->set_rules('zip_code', 'Zip Code', 'trim|required|numeric');
+
+            $this->form_validation->set_rules('bill_first_name', 'First Name', 'trim|required');
+            $this->form_validation->set_rules('bill_last_name', 'Last Name', 'trim|required');
+            $this->form_validation->set_rules('bill_address', 'Address', 'trim|required');
+            $this->form_validation->set_rules('bill_address2', 'Address 2', 'trim|required'); 
+            $this->form_validation->set_rules('bill_city', 'City', 'trim|required');
+            $this->form_validation->set_rules('bill_state', 'State', 'trim|required');
+            $this->form_validation->set_rules('bill_zip_code', 'Zip Code', 'trim|required|numeric');
+            
+            $this->form_validation->set_rules('bill_card', 'Card number', 'trim|required|numeric');
+            $this->form_validation->set_rules('bill_security_code', 'Security code', 'trim|required|numeric');
+
+            if($this->form_validation->run()) {
+                $data['users_id'] = $this->session->user_id;
+                $data['first_name'] = $info['first_name'];
+                $data['last_name'] = $info['last_name'];
+                $data['address'] = $info['address'];
+                $data['address_2'] = $info['address2'];
+                $data['city'] = $info['city'];
+                $data['state'] = $info['state'];
+                $data['zip_code'] = $info['zip_code'];
+
+                $data['bill_first_name'] = $info['bill_first_name'];
+                $data['bill_last_name'] = $info['bill_last_name'];
+                $data['bill_address'] = $info['bill_address'];
+                $data['bill_address_2'] = $info['bill_address2'];
+                $data['bill_city'] = $info['bill_city'];
+                $data['bill_state'] = $info['bill_state'];
+                $data['bill_zip_code'] = $info['bill_zip_code'];
+
+                $data['card'] = $info['bill_card'];
+                $data['security_code'] = md5($info['bill_security_code']);
+
+                $data['created_at'] =  date("Y-m-d h:i:s");
+                $data['updated_at'] =  date("Y-m-d H:i:s");
+
+                $this->insert_shipping($data);
+                $this->session->set_flashdata('success','Succesfully Checkout.');
+                redirect('users/show_all_carts/'.$this->session->user_id);
+
+             
+                
+            } else {
+                $errors = validation_errors();
+                $this->session->set_flashdata('error', $errors);
+                redirect('users/show_all_carts/'.$this->session->user_id);
+
+             
+            }
+        }
         // function get_all()
         // {
         //     return $this->db->query("SELECT id ,concat(first_name,' ',Last_name) AS Name, contact_number FROM contact_user")->result_array();

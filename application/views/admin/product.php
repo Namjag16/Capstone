@@ -51,6 +51,7 @@
                 width: 1000px;
                 height: 500px;
                 border: 1px solid black;
+                overflow-y: scroll;
             }
             div.main_container div.content div.content_box table{
                 width: 1000px;
@@ -119,8 +120,8 @@
     <div class = "main_container">
         <div class = "header">
             <h1>Dashboard</h1>
-            <h2><a href = "/dashboard" >Orders </a></h2>
-            <h2><a href = "/show_product"> Products </a></h2>
+            <h2><a href = "dashboard" >Orders </a></h2>
+            <h2><a href = ""> Products </a></h2>
             <h3> <a href = "/logoff"> Log off </a></h3>
             <h4>Product</h4>
         </div>
@@ -143,27 +144,17 @@
                         <th>Quantity Sold</th>
                         <th>Action</th>
                     </tr>
+<?php       foreach($data as $row ){
+?>
                     <tr>
-                        <td>1</td>
-                        <td>bdsads</td>
-                        <td>dsadsa</td>
-                        <td>dsadsa</td>
-                        <td class = "edit_remove_btn"><a href = "/edit" >Edit </a> | <a href = "">  Delete </a> </td>
+                        <td> <?= $row['id']?> </td>
+                        <td> <?= $row['name']?>  </td>
+                        <td> <?= $row['inventory']?>  </td>
+                        <td> <?= $row['sold']?> </td>
+                        <td class = "edit_remove_btn"><a href = "edit_product/<?= $row['id']?> " >Edit </a> | <a href = "">  Delete </a> </td>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>bdsads</td>
-                        <td>dsadsa</td>
-                        <td>dsadsa</td>
-                        <td class = "edit_remove_btn"><a href = "" >Edit </a> | <a href = "">  Delete </a> </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>bdsads</td>
-                        <td>dsadsa</td>
-                        <td>dsadsa</td>
-                        <td class = "edit_remove_btn"><a href = "" >Edit </a> | <a href = "">  Delete </a> </td>
-                    </tr>
+<?php }
+?>
                 </table>
             </div>
         </div>

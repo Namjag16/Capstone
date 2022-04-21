@@ -43,6 +43,41 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             }
         }
 
+        public function get_all_Shipping_info(){
+            return $this->db->query ("SELECT  shipping_info.users_id,shipping_info.id, shipping_info.billing_first_name as Name, DATE_FORMAT(shipping_info.created_at, '%m-%d-%Y') as date, concat(billing_address,' ', billing_city,' ',billing_state,' ',billing_zip) as Billing_Address , SUM(cart.price) as total
+                        FROM shipping_info 
+                        LEFT JOIN cart
+                        ON shipping_info.users_id = cart.users_id;")->result_array();
+        }
+
+        public function get_show_details($id){
+            return $this->db->query ("SELECT * FROM shipping_info WHERE users_id = ?",$id)->result_array();
+        }
+
+        public function get_show_cart($id){
+            return $this->db->query ("SELECT id,items,price,quantity, (price * quantity) as Total FROM cart WHERE users_id = ?",$id)->result_array();
+        }
+
+        public function get_show_product(){
+            return $this->db->query ("SELECT * FROM items")->result_array();
+        }
+        
+        public function select_product($id){
+            return $this->db->query ("SELECT * FROM items where id = ?",$id)->row_array();
+        }
+
+        public function edit_action($post){
+            var_dump($post);
+            if(isset($post['data']['action']) && $post['data']['action'] == 'Cancel' ){
+                redirect(base_url('/admins/show_product'));
+                // echo "cancel";
+            }elseif(isset($post['data']['action']) && $post['data']['action'] == 'Preview' ){
+                redirect(base_url('/admins/preview/').$post['id']);
+                // echo "preview";
+            }else{
+                echo 'Update';
+            }
+        }
         // function get_all()
         // {
         //     return $this->db->query("SELECT id ,concat(first_name,' ',Last_name) AS Name, contact_number FROM contact_user")->result_array();

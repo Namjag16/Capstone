@@ -48,7 +48,7 @@
             div.main_container div.content div.content_box{
                 width: 1000px;
                 height: 500px;
-                border: 1px solid black;
+                /* border: 1px solid black; */
             }
             div.main_container div.content div.content_box table{
                 width: 1000px;
@@ -79,8 +79,8 @@
     <div class = "main_container">
         <div class = "header">
             <h1>Dashboard</h1>
-            <h2><a href = "/dashboard" >Orders </a></h2>
-            <h2><a href = "/show_product"> Products </a></h2>
+            <h2><a href = "dashboard" >Orders </a></h2>
+            <h2><a href = "show_product"> Products </a></h2>
             <h3> <a href = "<?= base_url('/logoff')?>"> Log off </a></h3>
             <h4>Order</h4>
         </div>
@@ -107,28 +107,16 @@
                         <th>Status</th>
                     </tr>
                     <tr>
-                        <td><a href = "/show_details"> 1 </a> </td>
-                        <td>bdsads</td>
-                        <td>dsadsa</td>
-                        <td>dsadsa</td>
-                        <td>dsadsa</td>
-                        <td>dsadsa</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>bdsads</td>
-                        <td>dsadsa</td>
-                        <td>dsadsa</td>
-                        <td>dsadsa</td>
-                        <td>dsadsa</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>bdsads</td>
-                        <td>dsadsa</td>
-                        <td>dsadsa</td>
-                        <td>dsadsa</td>
-                        <td>dsadsa</td>
+<?php foreach($data as $row){ 
+?>
+                        <td><a href = "/admins/show_details/<?= $row['users_id'] ?>"> <?= $row['id'] ?> </a> </td>
+                        <td> <?= $row['Name'] ?> </td>
+                        <td> <?= $row['date'] ?> </td>
+                        <td> <?= $row['Billing_Address'] ?> </td>
+                        <td> <?= $row['total'] ?> </td>
+                        <td> </td>
+<?php }
+?>
                     </tr>
                 </table>
             </div>

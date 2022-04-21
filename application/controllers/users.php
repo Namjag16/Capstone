@@ -84,7 +84,9 @@ class Users extends CI_Controller {
     }
 
     public function shipping_info(){
-        var_dump($this->input->post());
+        // var_dump($this->input->post());
+        
+        $this->User->shipping_info_validate($this->input->post());
         
     }
     // /*  DOCU: this function will delete specific data 

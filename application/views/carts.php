@@ -1,5 +1,6 @@
 <?php
     $total = 0;
+    $total_item = 0;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -100,6 +101,13 @@
                 vertical-align: top;
                 margin: 0px 0px 0px 300px;
             }
+                p#error{
+                    color: red;
+                }
+                p#sucess{
+                    color: green;
+                }
+
                 div.main_container div.shipping_info div.ship_1 form{
                     margin: 20px 0px 0px 0px;
                 }
@@ -110,6 +118,25 @@
                     font-size:13px ;
                     font-weight: bold;
                     /* display: inline-block; */
+                }
+                div.main_container div.shipping_info div.ship_1 .btn_pay{
+                    width: 100px;
+                    height: 30px;
+                    margin: 5px 0px 0px 340px;
+                    font-size:13px ;
+                    font-weight: bold;
+                    background-color: white;
+                    border: none;
+                    border: 1px solid black;
+                    border-radius: 5px;
+                    font-weight: bolder;
+                    cursor: pointer;
+                    transition: 1s;
+                }
+                div.main_container div.shipping_info div.ship_1 .btn_pay:hover{
+                    background-color: black;
+                    color: white;
+                    transition: 1s;
                 }
                 div.main_container div.shipping_info div.ship_1 h2{
                     display: inline-block;
@@ -128,7 +155,7 @@
     <div class = "main_container">
         <div class = "header">
             <h1 id = "name_store"><a href = "/users/all_product"> Store </a></h1>
-            <a href = ""> Shopping Cart (5) </a>
+            <a href = ""> Shopping Cart () </a>
             <h4>Carts</h4>
 
         </div>
@@ -150,6 +177,7 @@
                     <td> <?= $row['total']?> </td>
                 </tr>
 <?php $total = $row['total'] + $total;
+        $total_item = $row['items']++;
         } 
 ?>
             </table>
@@ -188,12 +216,15 @@
                         <input type = "text" name = "bill_state" placeholder = "State">
                         <input type = "text" name = "bill_zip_code" placeholder = "Zip code">
                         <input type = "text" name = "bill_card" placeholder = "Card number">
-                        <input type = "text" name = "bill__security_code" placeholder = "Security number">
+                        <input type = "password" name = "bill_security_code" placeholder = "Security number">
                         
                     </div>
                     
-                    <input type = "submit" value = "ok">
+                    <input type = "submit" value = "Pay" class = "btn_pay">
                 </form>
+                    
+                <p id = "error"><?= $this->session->flashdata('error');?></p> 
+                <p id = "sucess"><?= $this->session->flashdata('success');?></p>
             </div>
 
         </div>

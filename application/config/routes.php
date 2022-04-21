@@ -24,5 +24,8 @@ $route['user_login'] = 'ClickablePrototypes/user_login';
 $route['Users/login'] = 'Users/login';
 $route['Users/show/(:any)'] = 'Users/show/$1';
 
+$route['admins/show_details/(:any)'] = 'admins/show_details/$1';
+$route['admins/preview/(:any)'] = 'admins/preview/$1';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

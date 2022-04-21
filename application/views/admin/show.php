@@ -65,7 +65,7 @@
                     font-size: 15px;
                 }
                 
-
+/* 
             div.main_container div.content div.order_box{
                 padding: 20px;
                 width: 700px;
@@ -74,6 +74,7 @@
                 margin: 10px 0px 0px 50px;
                 display: inline-block;
                 vertical-align: top;
+
             }
             div.main_container div.content div.order{
                 width: 700px;
@@ -97,7 +98,7 @@
                 margin: 10px 0px 0px 600px;
                 border: 1px solid black;
                 padding: 5px;
-            }
+            } */
 
     </style>
 </head>
@@ -114,63 +115,62 @@
 
         <div class = "content">
             <div class = "ship_info">
-                <h1>Order Id: #</h1>
+<?php       foreach($data AS $row){
+?>
+                <h1>Order Id: <?= $row['id'] ?></h1>
 
                 <div class = "customer_shipping_info">
                     <h2>Customer Shipping info:</h2>
-                    <p>Name: </p>
-                    <p>Address: </p>
-                    <p>City: </p>
-                    <p>State: </p>
-                    <p>Zip: </p>
+                    <p>Name: <?= $row['first_name'] ?> <?= $row['last_name'] ?></p>
+                    <p>Address: <?= $row['address'] ?> </p>
+                    <p>City: <?= $row['City'] ?> </p>
+                    <p>State: <?= $row['State'] ?> </p>
+                    <p>Zip: <?= $row['zip'] ?> </p>
                 </div>
 
                 <div class = "customer_billing_info">
                     <h2>Customer billing info:</h2>
-                    <p>Name: </p>
-                    <p>Address: </p>
-                    <p>City: </p>
-                    <p>State: </p>
-                    <p>Zip: </p>
+                    <p>Name:  <?= $row['billing_first_name'] ?> <?= $row['billing_last_name'] ?></p>
+                    <p>Address: <?= $row['billing_address'] ?></p>
+                    <p>City: <?= $row['billing_city'] ?> </p>
+                    <p>State: <?= $row['billing_state'] ?></p>
+                    <p>Zip: <?= $row['billing_zip'] ?></p>
                 </div>
 
+<?php } 
+?>
             </div>
-
             <div class = "order_box">
-
-                <div class = "order">
-                    <table>
-                        <tr>
-                            <th>Id</th>
-                            <th>Item</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Total</th>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Bag</td>
-                            <td>23</td>
-                            <td>3</td>
-                            <td>69</td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div class = "sub_total">
-                    <p>Sub-Total: </p>
-                    <p>Shipping: </p>
-                    <p>Total Price: </p>
-                </div>
-
-            </div>
-
+        <div class = "order">
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+<?php       foreach($info AS $row){
+?>                     
+                <tr>
+                    <td> <?= $row['id']?> </td>
+                    <td> <?= $row['items']?> </td>
+                    <td> <?= $row['price']?> </td>
+                    <td> <?= $row['quantity']?> </td>
+                    <td> <?= $row['Total']?> </td>
+                </tr>
+<?php } 
+?>
+            </table>
         </div>
 
-        <div class = "footer">
-
+        <div class = "sub_total">
+            <p>Sub-Total: </p>
+            <p>Shipping: </p>
+            <p>Total Price: </p>
         </div>
-    
+    </div>
+        </div>
     </div>
 
 </body>
