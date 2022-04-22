@@ -84,22 +84,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 redirect('login');
             }
         }
-
+        /*  DOCU:  This function will show all the data in items
+            Owner: BJ 
+        */
         public function all_items(){
             return $this->db->query("SELECT * FROM items")->result_array();
         }
-
+        /*  DOCU:  This function will get the specific data base on ID of the items
+            Owner: BJ 
+        */
         public function get_data($id){
             return $this->db->query("SELECT * FROM items WHERE id = ?",$id)->row_array();
         }
-
+        /*  DOCU:  This function will always get the 5 of the items base of what number item is selected
+            Owner: BJ 
+        */
         public function similar($id){
             $end = $id + 5;
             return $this->db->query("SELECT * FROM items WHERE id BETWEEN $id and $end limit 5;")->result_array();
         }
-
+        /*  DOCU:  This function will insert item of the user will bought quantity,items etc.
+            Owner: BJ 
+        */
         public function save_at_database($post){
-            // var_dump($post);
             
             if(!is_numeric($post['quantity']) || $post['quantity'] <= 0){
                 $this->session->set_flashdata('error', 'Invalid input for quantity');
@@ -111,17 +118,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 redirect("users/show/".$post['item_id']);
             }
         }
-
+        /*  DOCU:  This function will get all information in the carts
+            Owner: BJ 
+        */
         public function get_all_carts($id){
             return $this->db->query("SELECT items,price,quantity, (price * quantity) as total FROM cart WHERE users_id = ?;",$id)->result_array();
         }
-
+        /*  DOCU:  This function will insert shipping info in database
+            Owner: BJ 
+        */
         public function insert_shipping($var){
-            $query = "INSERT INTO shipping_info (users_id, first_name ,last_name ,address ,address_2 ,City ,State ,zip ,billing_first_name ,billing_last_name ,billing_address ,billing_address_2 ,billing_city ,billing_state ,billing_zip ,card ,security_code ,created_at,updated_at) 
-                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            $query = "INSERT INTO shipping_info (users_id, first_name ,last_name ,address ,address_2 ,City ,State ,zip ,billing_first_name ,billing_last_name ,billing_address ,billing_address_2 ,billing_city ,billing_state ,billing_zip ,card ,security_code ,total,created_at,updated_at) 
+                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             return $this->db->query($query,$var);
         }
-
+        /*  DOCU:  This function will validate the data in shipping info
+            Owner: BJ 
+        */
         public function shipping_info_validate($info){
             // var_dump($this->input->post());
             $this->load->library('form_validation');
@@ -165,15 +178,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 $data['card'] = $info['bill_card'];
                 $data['security_code'] = md5($info['bill_security_code']);
+                $data['total'] =$info['total'];
 
                 $data['created_at'] =  date("Y-m-d h:i:s");
                 $data['updated_at'] =  date("Y-m-d H:i:s");
 
+                var_dump($data);
                 $this->insert_shipping($data);
                 $this->session->set_flashdata('success','Succesfully Checkout.');
                 redirect('users/show_all_carts/'.$this->session->user_id);
-
-             
                 
             } else {
                 $errors = validation_errors();
@@ -183,22 +196,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
              
             }
         }
-        // function get_all()
-        // {
-        //     return $this->db->query("SELECT id ,concat(first_name,' ',Last_name) AS Name, contact_number FROM contact_user")->result_array();
-        // }
-
-        // function delete($id){
-        //     return $this->db->query("DELETE FROM contact_user WHERE id = ?",$id);
-        // }
-
-        // function get_data($id){
-        //     return $this->db->query("SELECT id ,concat(first_name,' ',Last_name) AS Name, contact_number FROM contact_user WHERE id = ?",$id)->row_array();
-        // }
-        
-        // function update($id,$user){
-        //     $query = "UPDATE contact_user SET first_name = ?, last_name = ?, contact_number = ?  WHERE id = $id";
-        //     return $this->db->query($query,$user);
-        // }
     }
 ?>

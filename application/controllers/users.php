@@ -17,9 +17,8 @@ class Users extends CI_Controller {
         $result = $this->User->login_validation($this->input->post());
         
         if($result == 'valid'){
-            // echo "there";
             $result = $this->User->get_info($this->input->post());
-
+  
             if ($result == NULL){
                 $this->session->set_flashdata('error', 'Invalid Email or Password');
                 redirect('login');
@@ -76,36 +75,18 @@ class Users extends CI_Controller {
         $post = $this->input->post();
         $result = $this->User->save_at_database($post);
     }
-
+    /*  DOCU: this function will show all the carts of the users, this functioni is depend on the USER ID 
+        Owner: BJ 
+    */
     public function show_all_carts(){
         $user_id = $this->session->user_id;
         $result['data'] = $this->User->get_all_carts($user_id);
         $this->load->view('carts',$result);
     }
-
+    /*  DOCU: this function will redirect in the model for saving the shipping info
+        Owner: BJ 
+    */
     public function shipping_info(){
-        // var_dump($this->input->post());
-        
         $this->User->shipping_info_validate($this->input->post());
-        
     }
-    // /*  DOCU: this function will delete specific data 
-    //     Owner: BJ 
-    // */
-    // public function delete(){
-    //     // var_dump($this->input->post());
-    //     $this->Sample->delete($this->input->post());
-    //     $result["quotes"] = $this->Sample->fetch_all();
-    //     $this->load->view("partials.php", $result);
-    // }
-
-    // /*  DOCU: this function will delete specific data 
-    //     Owner: BJ 
-    // */
-    // public function update(){
-    //     $order_update = $this->input->post();
-    //     $this->Sample->update($order_update);
-    //     $result["qoutes"] = $this->Sample->get_all();
-    //     $this->load->view("partials.php", $result);
-    // }
 }

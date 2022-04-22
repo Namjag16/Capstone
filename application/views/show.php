@@ -147,7 +147,7 @@
         <div class = "header">
             <h1>NAME OF STORE</h1>
             <p> <?= $this->session->userdata('first_name')?></p>
-            <a href = "/cart"> Shopping Cart (5) </a>
+            <a href = "/Users/show_all_carts"> Shopping Cart (5) </a>
             <a href = "/Users/logoff"> Log off </a>
         </div>
 

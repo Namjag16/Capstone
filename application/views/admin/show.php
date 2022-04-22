@@ -1,3 +1,7 @@
+<?php
+    $total = 0;
+    $shipping = 1;
+?>
 <!DOCTYPE html>
 <html lang="en">
   
@@ -10,8 +14,8 @@
     <style>
          *{
             margin: 0px;
-            overflow: hidden;
-            /* outline: solid red 1px; */
+            /* overflow: hidden;
+            outline: solid red 1px; */
         }
         div.main_container div.header {
             background-color: black;
@@ -49,7 +53,7 @@
                 padding: 20px;
                 width: 300px;
                 min-height: 500px;
-                border: 1px solid black;
+                border: 1px solid #d6e4ff;
                 margin: 10px;
                 display: inline-block;
             }
@@ -65,12 +69,11 @@
                     font-size: 15px;
                 }
                 
-/* 
+
             div.main_container div.content div.order_box{
                 padding: 20px;
                 width: 700px;
                 min-height: 100px;
-                border: 1px solid black;
                 margin: 10px 0px 0px 50px;
                 display: inline-block;
                 vertical-align: top;
@@ -79,12 +82,11 @@
             div.main_container div.content div.order{
                 width: 700px;
                 height: 520px    ;
-                border: 1px solid black;
+                border: 1px solid #d6e4ff;
                 overflow: auto;
             }
                 div.main_container div.content div.order table,tr{
                     width: 700px;
-                    border: 1px solid black;
                     border-collapse: collapse;
                 }
                 div.main_container div.content div.order th,td{
@@ -96,9 +98,8 @@
                 
             div.main_container div.content div.order_box div.sub_total{
                 margin: 10px 0px 0px 600px;
-                border: 1px solid black;
                 padding: 5px;
-            } */
+            }
 
     </style>
 </head>
@@ -107,8 +108,8 @@
     <div class = "main_container">
         <div class = "header">
             <h1>Dashboard</h1>
-            <h2><a href = "/dashboard" >Orders </a></h2>
-            <h2><a href = "/show_product"> Products </a></h2>
+            <h2><a href = "<?= base_url('admins/dashboard')?>" >Orders </a></h2>
+            <h2><a href = "<?= base_url('admins/show_product')?>"> Products </a></h2>
             <h3> <a href = "/logoff"> Log off </a></h3>
             <h4>show details</h4>
         </div>
@@ -141,35 +142,36 @@
 ?>
             </div>
             <div class = "order_box">
-        <div class = "order">
-            <table>
-                <tr>
-                    <th>Id</th>
-                    <th>Item</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                </tr>
-<?php       foreach($info AS $row){
-?>                     
-                <tr>
-                    <td> <?= $row['id']?> </td>
-                    <td> <?= $row['items']?> </td>
-                    <td> <?= $row['price']?> </td>
-                    <td> <?= $row['quantity']?> </td>
-                    <td> <?= $row['Total']?> </td>
-                </tr>
-<?php } 
-?>
-            </table>
-        </div>
+                <div class = "order">
+                    <table>
+                        <tr>
+                            <th>Id</th>
+                            <th>Item</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                        </tr>
+        <?php       foreach($info AS $row){
+        ?>                     
+                        <tr>
+                            <td> <?= $row['id']?> </td>
+                            <td> <?= $row['items']?> </td>
+                            <td> <?= $row['price']?> </td>
+                            <td> <?= $row['quantity']?> </td>
+                            <td> <?= $row['Total']?> </td>
+                        </tr>
+        <?php           $total = $row['Total'] + $total; 
+                    } 
+        ?>
+                    </table>
+                </div>
 
-        <div class = "sub_total">
-            <p>Sub-Total: </p>
-            <p>Shipping: </p>
-            <p>Total Price: </p>
-        </div>
-    </div>
+                <div class = "sub_total">
+                    <p>Sub-Total: $<?= $total?> </p>
+                    <p>Shipping: $ <?= $shipping?></p>
+                    <p>Total Price: $<?= $total_price = $total + $shipping?> </p>
+                </div>
+            </div>
         </div>
     </div>
 

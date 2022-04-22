@@ -106,19 +106,23 @@
                         <th>Total</th>
                         <th>Status</th>
                     </tr>
-                    <tr>
+                  
 <?php foreach($data as $row){ 
-?>
-                        <td><a href = "/admins/show_details/<?= $row['users_id'] ?>"> <?= $row['id'] ?> </a> </td>
-                        <td> <?= $row['Name'] ?> </td>
+?>                 <tr>
+                        <td><a href = "/admins/show_details/<?= $row['shipping_id'] ?>"> <?= $row['shipping_id'] ?> </a> </td>
+                        <td> <?= $row['billing_first_name'] ?> </td>
                         <td> <?= $row['date'] ?> </td>
-                        <td> <?= $row['Billing_Address'] ?> </td>
+                        <td> <?= $row['billing_address'] ?> </td>
                         <td> <?= $row['total'] ?> </td>
-                        <td> </td>
-<?php }
-?>
+                        <td> <select>
+                                <option value="Shipped">Shipped</option>
+                                <option value="canceled">Canceled</option>
+                            </select>
+                        </td>
                     </tr>
-                </table>
+<?php }
+?>                 
+            </table>
             </div>
         </div>
 

@@ -217,6 +217,7 @@
                         <input type = "text" name = "bill_zip_code" placeholder = "Zip code">
                         <input type = "text" name = "bill_card" placeholder = "Card number">
                         <input type = "password" name = "bill_security_code" placeholder = "Security number">
+                        <input type = "hidden" name = "total" value = "<?= $total?>" >
                         
                     </div>
                     

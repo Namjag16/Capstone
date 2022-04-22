@@ -27,7 +27,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         public function get_info($post){
             $pass = md5($post['password']);
             return $this->db->query("SELECT * FROM Users WHERE email = '{$post['email']}' AND password = '$pass' ")->row_array();
-            // var_dump($post);
         }
 
         /*  DOCU:  This function will determined if the user is ADMIN or ordinary user;
@@ -44,11 +43,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
 
         public function get_all_Shipping_info(){
-            return $this->db->query ("SELECT  shipping_info.users_id,shipping_info.id, shipping_info.billing_first_name as Name, DATE_FORMAT(shipping_info.created_at, '%m-%d-%Y') as date, concat(billing_address,' ', billing_city,' ',billing_state,' ',billing_zip) as Billing_Address , SUM(cart.price) as total
-                        FROM shipping_info 
-                        LEFT JOIN cart
-                        ON shipping_info.users_id = cart.users_id;")->result_array();
+            return $this->db->query ("SELECT users_id as shipping_id,billing_first_name,created_at,DATE_FORMAT(created_at, '%m-%d-%Y') as date,concat(billing_address,' ', billing_city,' ',billing_state,' ',billing_zip) as billing_address,total FROM shipping_info")->result_array();
         }
+        public function get_all_cart_info(){
+            return $this->db->query ("SELECT users_id,SUM(price) * quantity as total  FROM cart GROUP BY users_id")->result_array();
+        }
+
 
         public function get_show_details($id){
             return $this->db->query ("SELECT * FROM shipping_info WHERE users_id = ?",$id)->result_array();
@@ -78,22 +78,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 echo 'Update';
             }
         }
-        // function get_all()
-        // {
-        //     return $this->db->query("SELECT id ,concat(first_name,' ',Last_name) AS Name, contact_number FROM contact_user")->result_array();
-        // }
-
-        // function delete($id){
-        //     return $this->db->query("DELETE FROM contact_user WHERE id = ?",$id);
-        // }
-
-        // function get_data($id){
-        //     return $this->db->query("SELECT id ,concat(first_name,' ',Last_name) AS Name, contact_number FROM contact_user WHERE id = ?",$id)->row_array();
-        // }
-        
-        // function update($id,$user){
-        //     $query = "UPDATE contact_user SET first_name = ?, last_name = ?, contact_number = ?  WHERE id = $id";
-        //     return $this->db->query($query,$user);
-        // }
     }
 ?>

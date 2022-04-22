@@ -2,7 +2,7 @@
 <html lang="en">
   
 <head>
-	<title>Add</title>
+	<title>Preview</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 	<link rel="stylesheet" href="assets/css/edit.css">
@@ -105,8 +105,8 @@
     <div class = "main_container">
         <div class = "header">
             <h1>Preview</h1>
-            <h2><a href = "" >Orders </a></h2>
-            <h2><a href = "/show_product""> Products </a></h2>
+            <h2><a href = "<?= base_url('admins/dashboard')?>" >Orders </a></h2>
+            <h2><a href = "<?= base_url('admins/show_product')?>""> Products </a></h2>
             <h3> <a href = "/logoff"> Logoff </a></h3>
             <h4>Preview Product</h4>
         </div>

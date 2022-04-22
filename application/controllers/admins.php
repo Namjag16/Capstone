@@ -28,13 +28,9 @@ class Admins extends CI_Controller {
 
                 if($role == 'admin'){
                     $this->session->set_userdata(array('user_id'=>$result['id'], 'first_name'=>$result['first_name']));        
-                    // redirect('/admin/dashboard');
-                    // $result['data'] = $this->Admin->get_all_Shipping_info();
-                    // $this->load->view('admin/dashboard.php',$result);
                     $this->dashboard();
                 }
                 else{
-                    // echo "here";
                     $this->session->set_flashdata('error','Invalid Email or Password');
                     redirect('admin');
                 }
@@ -57,10 +53,8 @@ class Admins extends CI_Controller {
 
     public function show_details($id){  
         $result['data'] = $this->Admin->get_show_details($id);
+        $result['info'] = $this->Admin->get_show_cart($id);
         $this->load->view('admin/show.php',$result);
-
-        $cart['info'] = $this->Admin->get_show_cart($id);
-        $this->load->view('admin/show_cart.php',$cart);
     }
 
     public function show_product(){
@@ -84,46 +78,23 @@ class Admins extends CI_Controller {
         $result = $this->Admin->select_product($id);
         $this->load->view('admin/preview.php',$result);
     }
-    public function add_product(){
-        var_dump($this->input->post());
-        $file = $_FILES['image'];
+    // public function add_product(){
+    //     var_dump($this->input->post());
+    //     $file = $_FILES['image'];
 
-        $fileName = $_FILES['image']['name'];
-        $fileTmpName = $_FILES['image']['tmp_name'];
-        $fileSize = $_FILES['image']['size'];
-        $fileError = $_FILES['image']['error'];
-        $fileType = $_FILES['image']['type'];
+    //     $fileName = $_FILES['image']['name'];
+    //     $fileTmpName = $_FILES['image']['tmp_name'];
+    //     $fileSize = $_FILES['image']['size'];
+    //     $fileError = $_FILES['image']['error'];
+    //     $fileType = $_FILES['image']['type'];
 
-        // echo $fileName;
-        // echo $fileTmpName;
-        // echo $fileSize;
-        // echo $fileError;
-        // echo $fileType;
+    //     // echo $fileName;
+    //     // echo $fileTmpName;
+    //     // echo $fileSize;
+    //     // echo $fileError;
+    //     // echo $fileType;
 
-        var_dump($file);
-    }
-
-    // public function register(){
-    //     $this->User->register_validation($this->input->post());
+    //     var_dump($file);
     // }
 
-    // /*  DOCU: this function will delete specific data 
-    //     Owner: BJ 
-    // */
-    // public function delete(){
-    //     // var_dump($this->input->post());
-    //     $this->Sample->delete($this->input->post());
-    //     $result["quotes"] = $this->Sample->fetch_all();
-    //     $this->load->view("partials.php", $result);
-    // }
-
-    // /*  DOCU: this function will delete specific data 
-    //     Owner: BJ 
-    // */
-    // public function update(){
-    //     $order_update = $this->input->post();
-    //     $this->Sample->update($order_update);
-    //     $result["qoutes"] = $this->Sample->get_all();
-    //     $this->load->view("partials.php", $result);
-    // }
 }
